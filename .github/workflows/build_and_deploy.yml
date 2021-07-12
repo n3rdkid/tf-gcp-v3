@@ -48,10 +48,10 @@ jobs:
         run: gcloud app deploy app.yaml --quiet --project ${{secrets.GCP_PROJECT_ID}}
       
       - name : Create artifact.zip
-        # run: git archive --format=zip HEAD -o artifact.zip
-        run: |
-          apt-get -q update && apt-get -qqy install zip bzip2 gzip
-          zip -r ./artifact.zip . -x */.git/*
+        run: git archive --format=zip HEAD -o artifact.zip
+        # run: |
+        #   apt-get -q update && apt-get -qqy install zip bzip2 gzip
+        #   zip -r ./artifact.zip . -x */.git/* -x node_modules
 
       
       - id: upload-artifact
